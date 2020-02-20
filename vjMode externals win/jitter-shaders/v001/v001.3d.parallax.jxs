@@ -1,0 +1,23 @@
+<jittershader name="Parallax Map"> 
+	<language name="glsl" version="1.0">
+		<param name="ambientColor" type="vec4" default="0.5 0.5 0.5 1." />
+		<param name="diffuseColor" type="vec4" default="0.5 0.5 0.5 1." />
+
+		<param name="LightPosition" type="vec4" default="0.0 0.0 5.0 0.0" />
+		
+	 	<param name="heightScale" type="float" default="-0.02" />
+		
+		<param name="texture" type="int" default="0" />
+		<param name="normalMap" type="int" default="1" />
+		
+		<bind param="texture" program="fp" />
+		<bind param="normalMap" program="fp" />
+		<bind param="ambientColor" program="fp" />
+		<bind param="diffuseColor" program="fp" />
+		<bind param="heightScale" program="fp" />
+		<bind param="LightPosition" program="vp" />
+
+		<program name="vp" type="vertex" source="v001.3d.parallax.vert" />
+		<program name="fp" type="fragment" source="v001.3d.parallax.frag" /> 
+	</language> 
+</jittershader>

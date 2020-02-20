@@ -1,0 +1,17 @@
+{
+	"pattrstorage" : 	{
+		"name" : "vidStorage",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"folderVidPlayer" : [ "C:/Program Files (x86)/Cycling '74/Max 5.0/Vids/VideoPlayer/" ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

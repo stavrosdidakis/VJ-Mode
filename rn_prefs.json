@@ -1,0 +1,32 @@
+{
+	"pattrstorage" : 	{
+		"name" : "rn_pattr",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"blur" : [ 16 ],
+					"channels" : [ "stereo" ],
+					"codec" : [ "jpeg" ],
+					"framerate" : [ "30fps" ],
+					"info" : [ "i", 1 ],
+					"length" : [ 51 ],
+					"loop" : [ "loop", 1 ],
+					"master_vol" : [ 16 ],
+					"meters_on" : [ 0, 0, 0 ],
+					"monitor" : [ "monitor 0" ],
+					"preroll" : [ 10 ],
+					"resolution" : [ "320 x 240" ],
+					"show_preview" : [ "p", 1 ],
+					"shutter" : [ "1/120" ],
+					"skip" : [ 1 ],
+					"sound::rn_sound_controls::chans_matrixctrl" : [ 0, 0, 1, 1, 1, 1, 2, 2, 1, 3, 3, 1, 4, 4, 1, 5, 5, 1, 6, 6, 1, 7, 7, 1 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

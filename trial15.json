@@ -1,0 +1,18 @@
+{
+	"pattrstorage" : 	{
+		"name" : "trialVersion[1]",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"firstDayNum" : [ 3760 ],
+					"initDay" : [ 0 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}

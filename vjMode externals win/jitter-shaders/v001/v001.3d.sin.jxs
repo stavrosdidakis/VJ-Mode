@@ -1,0 +1,93 @@
+<jittershader name="test">
+<param name="time" type="float" default="0.0" />
+<param name="amount" type="float" default="1.0" />
+	<language name="glsl" version="1.0">
+		<bind param="time" program="test" />
+		<bing param="amount" program="test" />
+		<bind param="tex0" program="fp" />
+		<program name="test" type="vertex">
+<![CDATA[
+	
+	uniform float time, amount;
+	varying vec4 diffuse,ambient;
+	varying vec3 normal,lightDir,halfVector;
+
+	void main()
+	{	
+	
+		//vertz
+	
+		vec4 v = vec4(gl_Vertex);
+
+		v.xz = v.xz * (cos( gl_Vertex.y + time * 0.01));
+			
+		gl_Position =  gl_ModelViewProjectionMatrix * v;
+
+		// apply proper texture coord
+		gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0 ;
+
+		
+		// lights
+		/* first transform the normal into eye space and 
+		normalize the result */
+		
+		normal = normalize(gl_NormalMatrix * gl_Normal);
+
+		/* now normalize the light's direction. Note that 
+		according to the OpenGL specification, the light 
+		is stored in eye space. Also since we're talking about 
+		a directional light, the position field is actually direction */
+		
+		lightDir = normalize(vec3(gl_LightSource[0].position));
+
+		/* Normalize the halfVector to pass it to the fragment shader */
+		
+		halfVector = normalize(gl_LightSource[0].halfVector.xyz);
+
+		/* Compute the diffuse, ambient and globalAmbient terms */
+		
+		diffuse = gl_FrontMaterial.diffuse * gl_LightSource[0].diffuse;
+		ambient = gl_FrontMaterial.ambient * gl_LightSource[0].ambient;
+		ambient += gl_LightModel.ambient * gl_FrontMaterial.ambient;
+
+	
+		
+	}
+
+]]>		
+		</program>
+		<program name="passthru" type="fragment">
+<![CDATA[
+		uniform sampler2D tex0;
+		
+		
+		varying vec4 diffuse,ambient;
+		varying vec3 normal,lightDir,halfVector;
+
+
+		void main()
+		{
+			
+			vec3 ct,cf;
+			vec4 texel;
+			float intensity,at,af;
+
+			intensity = max(dot(lightDir,normalize(normal)),0.0);
+
+			cf = intensity * (gl_FrontMaterial.diffuse).rgb + 
+							  gl_FrontMaterial.ambient.rgb;
+			af = gl_FrontMaterial.diffuse.a;
+
+			texel = texture2D(tex0,gl_TexCoord[0].st);
+			ct = texel.rgb;
+			at = texel.a;
+
+			gl_FragColor = vec4(ct * cf, at * af);
+		
+		}
+
+
+]]>	
+		</program>
+	</language>
+</jittershader>
